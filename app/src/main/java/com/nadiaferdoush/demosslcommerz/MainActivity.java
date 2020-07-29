@@ -1,5 +1,6 @@
 package com.nadiaferdoush.demosslcommerz;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements TransactionRespon
         int randomPrefix = new Random().nextInt();
 
         final SSLCommerzInitialization sslCommerzInitialization = new SSLCommerzInitialization(
-                "store_id", "store_password",
+                "bdjob5f0ad29f35834", "bdjob5f0ad29f35834@ssl",
                 amount, CurrencyType.BDT, "transactionID" + randomPrefix,
                 "Payment", SdkType.TESTBOX);
 
@@ -99,6 +100,10 @@ public class MainActivity extends AppCompatActivity implements TransactionRespon
         transactionMessage.setText("Transaction status: " + s);
         amountET.setText(null);
         Toast.makeText(this, "Transaction status:" + s, Toast.LENGTH_SHORT).show();
+        // go back to main screen on failure
+        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
     }
 
     @Override
